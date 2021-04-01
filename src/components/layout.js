@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
+import { StaticImage } from "gatsby-plugin-image"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,27 +25,19 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div id="content">
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
+      <div style={{ width: "100%" }}>
+        {children}
         <footer
           style={{
             marginTop: `2rem`,
           }}
         >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          <StaticImage src="../images/coming_soon.jpg" alt="coming soon logo" />
         </footer>
       </div>
-    </>
+    </div>
   )
 }
 
